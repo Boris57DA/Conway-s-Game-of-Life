@@ -1,0 +1,224 @@
+    <!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conway's Game of Life</title>
+    <link rel="stylesheet" href="game-of-life-skeleton.css">
+</head>
+<body>
+    <!-- TODO 1: Създай header със заглавие на играта -->
+    <!-- HINT: Използвай <header> таг с <h1> за заглавие "Conway's Game of Life" -->
+    <header class="header">
+        <!-- TODO 1.1: Добави заглавие <h1> тук -->
+        <h1>Conway's Game of Life</h1>
+        
+        <!-- TODO 1.2: Добави подзаглавие <p class="subtitle"> с описание на играта -->
+        <p class="subtitle">Клетъчен автомат, в който клетките оживяват и умират според съседите си</p>
+    </header>
+
+    <!-- TODO 2: Създай container за цялото съдържание -->
+    <div class="container">
+        
+        <!-- TODO 3: Създай dashboard със статистики -->
+        <!-- HINT: Използвай <section class="dashboard"> с три статистически карти -->
+        <section class="dashboard">
+            <!-- TODO 3.1: Създай статистическа карта за живи клетки -->
+            <!-- STRUCTURE:
+                <div class="stat-card">
+                    <div class="stat-icon">🟢</div>
+                    <div class="stat-info">
+                        <div class="stat-label">Живи клетки</div>
+                        <div class="stat-value" id="liveCells">0</div>
+                    </div>
+                </div>
+            -->
+            <div class="stat-card">
+                <div class="stat-icon">🟢</div>
+                <div class="stat-info">
+                    <div class="stat-label">Живи клетки</div>
+                    <div class="stat-value" id="liveCells">0</div>
+                </div>
+            </div>
+            
+            <!-- TODO 3.2: Създай статистическа карта за поколения -->
+            <!-- HINT: Използвай emoji "🔄" за икона, id="generation" за стойността -->
+            <div class="stat-card">
+                <div class="stat-icon">🔄</div>
+                <div class="stat-info">
+                    <div class="stat-label">Поколение</div>
+                    <div class="stat-value" id="generation">0</div>
+                </div>
+            </div>
+            
+            <!-- TODO 3.3: Създай статистическа карта за FPS -->
+            <!-- HINT: Използвай emoji "⚡" за икона, id="fps" за стойността -->
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-info">
+                    <div class="stat-label">FPS</div>
+                    <div class="stat-value" id="fps">0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TODO 4: Създай секция с canvas за визуализация -->
+        <section class="canvas-section">
+            <!-- TODO 4.1: Добави заглавие <h2> "Игрална дъска" -->
+            <h2>Игрална дъска</h2>
+            
+            <!-- TODO 4.2: Създай canvas wrapper div -->
+            <div class="canvas-wrapper">
+                <!-- TODO 4.3: Създай canvas елемент -->
+                <!-- REQUIREMENTS:
+                    - id="gameCanvas"
+                    - width="800"
+                    - height="600"
+                -->
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+            </div>
+
+            <!-- TODO 4.4: Добави параграф с инструкции -->
+            <!-- TEXT: "Кликни на дъската за да създадеш или изтриеш клетки" -->
+            <p>Кликни на дъската за да създадеш или изтриеш клетки</p>
+        </section>
+
+        <!-- TODO 5: Създай контролен панел -->
+        <section class="controls-section">
+            <!-- TODO 5.1: Добави заглавие <h2> "Контроли" -->
+            <h2>Контроли</h2>
+            
+            <!-- TODO 5.2: Създай div container за контролите -->
+            <div class="controls">
+                
+                <!-- TODO 5.3: Създай група бутони за игрови контроли -->
+                <div class="control-group">
+                    <!-- TODO 5.3.1: Бутон Play -->
+                    <!-- REQUIREMENTS:
+                        - id="playBtn"
+                        - class="btn btn-primary"
+                        - text: "▶ Play"
+                    -->
+                    <button id="playBtn" class="btn btn-primary">▶ Play</button>
+                    
+                    <!-- TODO 5.3.2: Бутон Pause -->
+                    <!-- HINT: id="pauseBtn", class="btn btn-secondary", text: "⏸ Pause" -->
+                    <button id="pauseBtn" class="btn btn-secondary">⏸ Pause</button>
+                    
+                    <!-- TODO 5.3.3: Бутон Clear -->
+                    <!-- HINT: id="clearBtn", class="btn btn-danger", text: "🗑 Clear" -->
+                    <button id="clearBtn" class="btn btn-danger">🗑 Clear</button>
+                    
+                    <!-- TODO 5.3.4: Бутон Random -->
+                    <!-- HINT: id="randomBtn", class="btn btn-success", text: "🎲 Random" -->
+                    <button id="randomBtn" class="btn btn-success">🎲 Random</button>
+                </div>
+
+                <!-- TODO 5.4: Създай група за контрол на скоростта -->
+                <div class="control-group">
+                    <!-- TODO 5.4.1: Добави label за slider -->
+                    <label for="speedSlider">Скорост (FPS):</label>
+                    
+                    <!-- TODO 5.4.2: Създай range input за скорост -->
+                    <!-- REQUIREMENTS:
+                        - type="range"
+                        - id="speedSlider"
+                        - min="1"
+                        - max="30"
+                        - value="10"
+                        - class="slider"
+                    -->
+                    <input type="range" id="speedSlider" min="1" max="30" value="10" class="slider">
+                    
+                    <!-- TODO 5.4.3: Създай span за показване на текущата стойност -->
+                    <span id="speedValue">10</span>
+                </div>
+
+                <!-- TODO 5.5: Създай група за контрол на размера на клетките -->
+                <div class="control-group">
+                    <!-- TODO 5.5.1: Добави label за размера -->
+                    <label for="cellSizeSlider">Размер на клетките:</label>
+                    
+                    <!-- TODO 5.5.2: Създай range input за размер -->
+                    <!-- HINT: id="cellSizeSlider", min="5", max="20", value="10" -->
+                    <input type="range" id="cellSizeSlider" min="5" max="20" value="10" class="slider">
+                    
+                    <!-- TODO 5.5.3: Добави span за показване на размера -->
+                    <span id="cellSizeValue">10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TODO 6: Създай секция с готови модели (patterns) -->
+        <section class="patterns-section">
+            <!-- TODO 6.1: Добави заглавие <h2> "Готови модели" -->
+            <h2>Готови модели</h2>
+            
+            <!-- TODO 6.2: Създай grid container за моделите -->
+            <div class="patterns-grid">
+                
+                <!-- TODO 6.3: Създай бутон за Glider модел -->
+                <button class="pattern-btn" data-pattern="glider">
+                    <div class="pattern-name">🛸 Glider</div>
+                    <div class="pattern-description">Движещ се модел</div>
+                </button>
+                
+                <!-- TODO 6.4: Създай бутон за Blinker модел -->
+                <button class="pattern-btn" data-pattern="blinker">
+                    <div class="pattern-name">💫 Blinker</div>
+                    <div class="pattern-description">Осцилиращ модел</div>
+                </button>
+                
+                <!-- TODO 6.5: Създай бутон за Toad модел -->
+                <button class="pattern-btn" data-pattern="toad">
+                    <div class="pattern-name">🐸 Toad</div>
+                    <div class="pattern-description">Осцилатор период 2</div>
+                </button>
+                
+                <!-- TODO 6.6: Създай бутон за Beacon модел -->
+                <button class="pattern-btn" data-pattern="beacon">
+                    <div class="pattern-name">📡 Beacon</div>
+                    <div class="pattern-description">Осцилатор период 2</div>
+                </button>
+                
+                <!-- TODO 6.7: Създай бутон за Pulsar модел -->
+                <button class="pattern-btn" data-pattern="pulsar">
+                    <div class="pattern-name">⭐ Pulsar</div>
+                    <div class="pattern-description">Осцилатор период 3</div>
+                </button>
+                
+                <!-- TODO 6.8: Създай бутон за LWSS модел (Lightweight Spaceship) -->
+                <button class="pattern-btn" data-pattern="lwss">
+                    <div class="pattern-name">🚀 LWSS</div>
+                    <div class="pattern-description">Движещ се модел</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- TODO 7: Създай секция за правилата на играта -->
+        <section class="rules-section">
+            <!-- TODO 7.1: Добави заглавие <h2> "Правила на играта" -->
+            <h2>Правила на играта</h2>
+            
+            <!-- TODO 7.2: Създай списък с правилата -->
+            <ul>
+                <li>Жива клетка с 2 или 3 живи съседи остава жива</li>
+                <li>Жива клетка с по-малко от 2 или повече от 3 съседи умира</li>
+                <li>Мъртва клетка с точно 3 живи съседи оживява</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- TODO 8: Създай footer -->
+    <footer class="footer">
+        <!-- TODO 8.1: Добави параграф с авторски права -->
+        <!-- TEXT: "© 2025 Conway's Game of Life - Училищен проект" -->
+        <p>© 2025 Conway's Game of Life - Училищен проект</p>
+    </footer>
+
+    <!-- TODO 9: Свържи JavaScript файла -->
+    <!-- HINT: <script src="game-of-life-skeleton.js"></script> -->
+    <script src="game-of-life-skeleton.js"></script>
+
+</body>
+</html>
