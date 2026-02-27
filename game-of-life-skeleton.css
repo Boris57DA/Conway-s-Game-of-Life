@@ -1,0 +1,758 @@
+/* ========================================
+   Conway's Game of Life - CSS Skeleton
+   Попълни TODO задачите за завършване
+   ======================================== */
+
+/* TODO 1: Създай CSS variables в :root */
+/* HINT: Използвай --variable-name синтаксис */
+:root {
+    /* TODO 1.1: Основни цветове */
+    /* REQUIREMENTS:
+        --primary-color: #2196F3 (син)
+        --secondary-color: #4CAF50 (зелен)
+        --danger-color: #f44336 (червен)
+        --dark-bg: #1a1a2e (тъмно синьо)
+        --card-bg: #16213e (по-светло синьо)
+        --text-color: #ffffff (бял)
+        --text-muted: #a0a0a0 (сив)
+    */
+   --primary-color: #2196F3;   
+    --secondary-color: #4CAF50; 
+    --danger-color: #f44336;    
+    --dark-bg: #1a1a2e;         
+    --card-bg: #16213e;        
+    --text-color: #ffffff;      
+    --text-muted: #a0a0a0;     
+    
+    
+    /* TODO 1.2: Размери и spacing */
+    /* HINT: --spacing-xs: 0.5rem, --spacing-sm: 1rem, --spacing-md: 1.5rem, --spacing-lg: 2rem */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    
+    /* TODO 1.3: Border radius */
+    /* HINT: --border-radius: 8px, --border-radius-lg: 12px */
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    
+    /* TODO 1.4: Shadows */
+    /* HINT: --shadow-sm: 0 2px 4px rgba(0,0,0,0.1), --shadow-md: 0 4px 8px rgba(0,0,0,0.2) */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.2);
+    
+    /* TODO 1.5: Transitions */
+    /* HINT: --transition: all 0.3s ease */
+    --transition: all 0.3s ease;
+    
+}
+
+/* TODO 2: Стилове за body */
+body {
+    /* TODO 2.1: Премахни default margin и padding */
+    padding: 0;
+    margin: 0;
+    
+    /* TODO 2.2: Задай font-family */
+    /* HINT: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* TODO 2.3: Задай background color */
+    /* HINT: Използвай var(--dark-bg) */
+    background-color: var(--dark-bg);
+    
+    /* TODO 2.4: Задай text color */
+    /* HINT: Използвай var(--text-color) */
+    color: var(--text-color);
+    
+    /* TODO 2.5: Задай line-height за четимост */
+    /* HINT: line-height: 1.6 */
+    line-height: 1.6;
+}
+
+/* TODO 3: Стилове за header */
+.header {
+    /* TODO 3.1: Центрирай текста */
+    text-align: center;
+    
+    /* TODO 3.2: Добави padding */
+    /* HINT: padding: var(--spacing-lg) 0 */
+    padding: var(--spacing-lg) 0;
+    
+    /* TODO 3.3: Добави background gradient */
+    /* HINT: background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) */
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    
+    /* TODO 3.4: Добави shadow */
+    /* HINT: box-shadow: var(--shadow-md) */
+    box-shadow: var(--shadow-md);
+}
+
+/* TODO 4: Стилове за h1 в header */
+.header h1 {
+    /* TODO 4.1: Премахни default margin */
+    margin: 0;
+    
+    /* TODO 4.2: Задай font size */
+    /* HINT: font-size: 2.5rem */
+    font-size: 2.5rem;
+    
+    /* TODO 4.3: Добави text shadow за ефект */
+    /* HINT: text-shadow: 2px 2px 4px rgba(0,0,0,0.3) */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+/* TODO 5: Стилове за subtitle в header */
+.header .subtitle {
+    /* TODO 5.1: Задай font size */
+    font-size: 1.2rem;
+    
+    /* TODO 5.2: Задай цвят (по-светъл) */
+    /* HINT: color: rgba(255, 255, 255, 0.9) */
+    color: rgba(255, 255, 255, 0.9);
+    
+    /* TODO 5.3: Задай margin */
+    margin-top: 0.5rem;
+}
+
+/* TODO 6: Стилове за container */
+.container {
+    /* TODO 6.1: Ограничи максималната ширина */
+    /* HINT: max-width: 1200px */
+    max-width: 1200px;
+    
+    /* TODO 6.2: Центрирай container-а */
+    /* HINT: margin: 0 auto */
+    margin: 0 auto;
+    
+    /* TODO 6.3: Добави padding */
+    /* HINT: padding: var(--spacing-lg) */
+    padding: var(--spacing-lg);
+}
+
+/* TODO 7: Стилове за dashboard */
+.dashboard {
+    /* TODO 7.1: Използвай CSS Grid за layout */
+    /* HINT: display: grid */
+    display: grid;
+    
+    /* TODO 7.2: Създай три колони с равна ширина */
+    /* HINT: grid-template-columns: repeat(3, 1fr) */
+    grid-template-columns: repeat(3, 1fr);
+    
+    /* TODO 7.3: Добави gap между картите */
+    /* HINT: gap: var(--spacing-md) */
+    gap: var(--spacing-md);
+    
+    /* TODO 7.4: Добави margin */
+    /* HINT: margin-bottom: var(--spacing-lg) */
+    margin-bottom: var(--spacing-lg);
+}
+
+/* TODO 8: Стилове за stat-card */
+.stat-card {
+    /* TODO 8.1: Задай background color */
+    background: var(--card-bg);
+    
+    /* TODO 8.2: Добави padding */
+    padding: var(--spacing-md);
+    
+    /* TODO 8.3: Добави border-radius */
+    border-radius: var(--border-radius);
+    
+    /* TODO 8.4: Добави box-shadow */
+    box-shadow: var(--shadow-sm);
+    
+    /* TODO 8.5: Използвай flexbox за layout */
+    /* HINT: display: flex, align-items: center, gap: 1rem */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    /* TODO 8.6: Добави transition ефект */
+    transition: var(--transition);
+    
+    /* TODO 8.7: Добави hover ефект (transform: translateY(-5px)) */
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+/* TODO 9: Стилове за stat-icon */
+.stat-icon {
+    /* TODO 9.1: Задай font size за emoji */
+    /* HINT: font-size: 2.5rem */
+    font-size: 2.5rem;
+}
+
+/* TODO 10: Стилове за stat-label */
+.stat-label {
+    /* TODO 10.1: Задай font size */
+    font-size: 0.9rem;
+    
+    /* TODO 10.2: Задай цвят (muted) */
+    color: var(--text-muted);
+}
+
+/* TODO 11: Стилове за stat-value */
+.stat-value {
+    /* TODO 11.1: Задай font size (по-голям) */
+    /* HINT: font-size: 2rem */
+    font-size: 2rem;
+    
+    /* TODO 11.2: Направи текста bold */
+    font-weight: bold;
+    
+    /* TODO 11.3: Задай цвят (primary или secondary) */
+    color: var(--primary-color);
+}
+
+/* TODO 12: Стилове за canvas-section */
+.canvas-section {
+    /* TODO 12.1: Задай background */
+    background: var(--card-bg);
+    
+    /* TODO 12.2: Добави padding */
+    padding: var(--spacing-lg);
+    
+    /* TODO 12.3: Добави border-radius */
+    border-radius: var(--border-radius);
+    
+    /* TODO 12.4: Добави margin */
+    margin-bottom: var(--spacing-lg);
+    
+    /* TODO 12.5: Центрирай текста */
+    text-align: center;
+}
+
+/* TODO 13: Стилове за canvas-wrapper */
+.canvas-wrapper {
+    /* TODO 13.1: Центрирай canvas елемента */
+    /* HINT: display: flex, justify-content: center, margin: var(--spacing-md) 0 */
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-md) 0;
+    
+    /* TODO 13.2: Добави padding */
+    padding: var(--spacing-sm);
+}
+
+/* TODO 14: Стилове за canvas елемента */
+#gameCanvas {
+    /* TODO 14.1: Добави border */
+    /* HINT: border: 2px solid var(--primary-color) */
+    border: 2px solid var(--primary-color);
+    
+    /* TODO 14.2: Добави border-radius */
+    border-radius: var(--border-radius);
+    
+    /* TODO 14.3: Добави box-shadow */
+    box-shadow: var(--shadow-md);
+    
+    /* TODO 14.4: Добави cursor pointer за интерактивност */
+    /* HINT: cursor: crosshair */
+    cursor: crosshair;
+    
+    /* TODO 14.5: Задай background color */
+    /* HINT: background: #000000 */
+    background: #000000;
+}
+
+/* TODO 15: Стилове за controls-section */
+.controls-section {
+    /* TODO 15.1: Копирай стиловете от canvas-section */
+    background: var(--card-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* TODO 16: Стилове за controls container */
+.controls {
+    /* TODO 16.1: Използвай flexbox */
+    /* HINT: display: flex, flex-direction: column, gap: var(--spacing-md) */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* TODO 17: Стилове за control-group */
+.control-group {
+    /* TODO 17.1: Използвай flexbox */
+    /* HINT: display: flex, align-items: center, gap: var(--spacing-sm) */
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    
+    /* TODO 17.2: Позволи wrap при малки екрани */
+    /* HINT: flex-wrap: wrap */
+    flex-wrap: wrap;
+}
+
+/* TODO 18: Стилове за бутони (.btn) */
+.btn {
+    /* TODO 18.1: Основни стилове за бутона */
+    /* REQUIREMENTS:
+        - padding: 0.75rem 1.5rem
+        - border: none
+        - border-radius: var(--border-radius)
+        - font-size: 1rem
+        - cursor: pointer
+        - transition: var(--transition)
+    */
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    
+    /* TODO 18.2: Добави hover ефект */
+    /* HINT: .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md) } */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* TODO 19: Стилове за btn-primary */
+.btn-primary {
+    /* TODO 19.1: Задай background и text color */
+    /* HINT: background: var(--primary-color), color: white */
+    background: var(--primary-color);
+    color: white;
+}
+
+/* TODO 20: Стилове за btn-secondary */
+.btn-secondary {
+    /* TODO 20.1: Задай background и text color */
+    /* HINT: background: #757575, color: white */
+    background: #757575;
+    color: white;
+}
+
+/* TODO 21: Стилове за btn-success */
+.btn-success {
+    /* TODO 21.1: Задай background и text color */
+    background: #4caf50;
+    color: white;
+}
+
+/* TODO 22: Стилове за btn-danger */
+.btn-danger {
+    /* TODO 22.1: Задай background и text color */
+    background: #f44336;
+    color: white;
+}
+
+/* TODO 23: Стилове за slider */
+.slider {
+    /* TODO 23.1: Основни стилове */
+    /* REQUIREMENTS:
+        - width: 200px
+        - height: 8px
+        - border-radius: 5px
+        - background: var(--card-bg)
+        - outline: none
+        - cursor: pointer
+    */
+    width: 200px;
+    height: 8px;
+    border-radius: 5px;
+    background: var(--card-bg);
+    outline: none;
+    cursor: pointer;
+    
+    /* TODO 23.2: Стилизирай thumb (превлак) */
+    /* HINT: .slider::-webkit-slider-thumb */
+}
+
+.slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+/* TODO 24: Стилове за patterns-section */
+.patterns-section {
+    /* TODO 24.1: Копирай стиловете от другите секции */
+    background: var(--card-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* TODO 25: Стилове за patterns-grid */
+.patterns-grid {
+    /* TODO 25.1: Създай grid layout */
+    /* HINT: display: grid, grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)), gap: 1rem */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* TODO 26: Стилове за pattern-btn */
+.pattern-btn {
+    /* TODO 26.1: Основни стилове */
+    /* REQUIREMENTS:
+        - background: var(--card-bg)
+        - border: 2px solid transparent
+        - border-radius: var(--border-radius)
+        - padding: 1rem
+        - cursor: pointer
+        - transition: var(--transition)
+        - text-align: center
+    */
+    background: var(--card-bg);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    
+    /* TODO 26.2: Hover ефект */
+    /* HINT: border-color: var(--primary-color), transform: scale(1.05) */
+}
+
+.pattern-btn:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* TODO 27: Стилове за pattern-name */
+.pattern-name {
+    /* TODO 27.1: Задай font size и weight */
+    /* HINT: font-size: 1.2rem, font-weight: bold */
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+    /* TODO 27.2: Добави margin */
+    margin-bottom: 0.5rem;
+}
+
+/* TODO 28: Стилове за pattern-description */
+.pattern-description {
+    /* TODO 28.1: Задай font size и цвят */
+    /* HINT: font-size: 0.9rem, color: var(--text-muted) */
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* TODO 29: Стилове за rules-section */
+.rules-section {
+    /* TODO 29.1: Копирай стиловете от другите секции */
+    background: var(--card-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* TODO 30: Стилове за списък с правила */
+.rules-section ul {
+    /* TODO 30.1: Стилизирай списъка */
+    /* HINT: list-style-type: none, padding-left: 0 */
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.rules-section li {
+    /* TODO 30.2: Стилизирай list items */
+    /* HINT: padding: 0.5rem 0, добави checkmark emoji преди текста с ::before */
+    padding: 0.5rem 0;
+}
+
+.rules-section li::before {
+    content: "✔️ ";
+}
+
+/* TODO 31: Стилове за footer */
+.footer {
+    /* TODO 31.1: Основни стилове */
+    /* REQUIREMENTS:
+        - text-align: center
+        - padding: var(--spacing-lg)
+        - margin-top: var(--spacing-lg)
+        - border-top: 1px solid var(--card-bg)
+        - color: var(--text-muted)
+    */
+    text-align: center;
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    border-top: 1px solid var(--card-bg);
+    color: var(--text-muted);
+}
+
+/* TODO 32: Responsive дизайн за таблети */
+@media (max-width: 768px) {
+    /* TODO 32.1: Промени dashboard grid на 1 колона */
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    /* TODO 32.2: Намали font sizes */
+    body {
+        font-size: 0.95rem;
+    }
+    
+    /* TODO 32.3: Промени canvas размера */
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* TODO 33: Responsive дизайн за мобилни */
+@media (max-width: 480px) {
+    /* TODO 33.1: Още по-малки font sizes */
+    body {
+        font-size: 0.9rem;
+    }
+    
+    /* TODO 33.2: Намали padding-ите */
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    /* TODO 33.3: Stack бутоните вертикално */
+    .control-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* TODO 34: БОНУС - Анимации */
+/* Създай @keyframes анимации за:
+   - fadeIn анимация за елементи при зареждане
+   - pulse анимация за live cells counter
+   - slideIn анимация за модели
+*/
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* TODO 35: БОНУС - Dark/Light theme toggle */
+/* Създай класове за light theme, ако искаш да добавиш тази функционалност */
+
+.light-theme {
+    --background-color: #f5f5f5;
+    --card-bg: #ffffff;
+    --text-color: #212121;
+    --text-muted: #757575;
+    --primary-color: #1976d2;
+    --secondary-color: #9c27b0;
+}
+
+.light-theme body {
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+.light-theme .stat-card,
+.light-theme .canvas-section,
+.light-theme .controls-section,
+.light-theme .patterns-section,
+.light-theme .rules-section {
+    box-shadow: var(--shadow-sm);
+}
+
+/* ========================================
+   Modern UI polish (overrides only)
+   Без промяна на HTML структурата
+   ======================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(33, 150, 243, 0.20), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(76, 175, 80, 0.16), transparent 60%),
+        var(--dark-bg);
+}
+
+.container {
+    animation: fadeIn 0.6s ease both;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header h1 {
+    letter-spacing: 0.2px;
+}
+
+h2 {
+    margin: 0 0 var(--spacing-md);
+    font-size: 1.4rem;
+    letter-spacing: 0.2px;
+}
+
+.canvas-section p {
+    margin-top: var(--spacing-sm);
+    color: var(--text-muted);
+}
+
+.stat-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+#liveCells {
+    animation: pulse 1.8s ease-in-out infinite;
+}
+
+#gameCanvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.controls label {
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 600;
+}
+
+.controls span {
+    color: var(--text-muted);
+    min-width: 2ch;
+    font-variant-numeric: tabular-nums;
+}
+
+.btn {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:focus-visible {
+    outline: 3px solid rgba(33, 150, 243, 0.35);
+    outline-offset: 2px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    box-shadow: var(--shadow-sm);
+}
+
+.slider::-moz-range-track {
+    height: 8px;
+    border-radius: 5px;
+    background: var(--card-bg);
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    box-shadow: var(--shadow-sm);
+}
+
+.patterns-section {
+    text-align: center;
+}
+
+.pattern-btn {
+    color: var(--text-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.pattern-btn:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.patterns-grid .pattern-btn {
+    animation: slideIn 0.5s ease both;
+}
+
+.rules-section {
+    text-align: center;
+}
+
+.rules-section ul {
+    margin: 0;
+}
+
+.rules-section li {
+    position: relative;
+    padding-left: 1.75rem;
+    text-align: left;
+}
+
+.rules-section li::before {
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    content: "✅";
+}
+
+@media (max-width: 768px) {
+    .header {
+        position: static;
+    }
+}
